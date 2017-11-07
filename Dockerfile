@@ -16,6 +16,7 @@ RUN curl http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-mu
   
 RUN apt-get update && \
   apt-get install -y \
+    sudo  \ 
     openjdk-8-jre \
     xvfb \
     libgconf-2-4 \
@@ -60,3 +61,11 @@ CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisor.conf"]
 
 # Protractor test project needs to be mounted at /project
 VOLUME ["/project"]
+
+
+RUN npm install -g npm
+
+RUN  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+# Install Node.js from the Debian-based distributions repository
+RUN  sudo apt-get install -y nodejs
